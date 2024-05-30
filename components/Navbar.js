@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { myWeather } from "./HomePage";
 import axios from "axios";
 import CurrentGeoLocation from "./CurrentGeoLocation";
-import { keys } from "./key";
 import Image from "next/image";
 export default function Navbar() {
   const { data: session } = useSession();

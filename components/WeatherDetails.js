@@ -4,7 +4,7 @@ import { Calendar, MapPin, Sun, Moon, Wind, Waves, Droplets, Thermometer, Eye   
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
 import Image from "next/image";
-import bb from "../images/egg.png";
+
 
 export default function WeatherDetails() {
   const [Weather, setWeather] = useContext(myWeather);
