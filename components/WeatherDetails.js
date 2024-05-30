@@ -23,12 +23,12 @@ export default function WeatherDetails() {
   let lon;
   let time = new Date().toLocaleTimeString();
   // Digital clock
-  const [ctime, setTime] = useState(time);
-  const UpdateTime = () => {
-    time = new Date().toLocaleTimeString();
-    setTime(time);
-  };
-  setInterval(UpdateTime);
+  // const [ctime, setTime] = useState(time);
+  // const UpdateTime = () => {
+  //   time = new Date().toLocaleTimeString();
+  //   setTime(time);
+  // };
+  // setInterval(UpdateTime);
 
   // get weather forecast data for 7days
   const getWeather = async () => {
