@@ -6,6 +6,7 @@ import { myWeather } from "./HomePage";
 import axios from "axios";
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import { keys } from "./key";
+import Image from "next/image";
 export default function Navbar() {
   const { data: session } = useSession();
   const { position } = CurrentGeoLocation();
@@ -106,10 +107,12 @@ export default function Navbar() {
                     <MapPin size={15} />
                   </div>
                   <div>
-                    <img
+                    <Image
                       className="w-5"
                       src={`https://flagsapi.com/${city.country}/flat/64.png`}
                       alt=""
+                      width={100}
+                      height={100}
                     />
                   </div>
                   <div className="flex items-center  gap-2">

@@ -44,14 +44,14 @@ export default function LoginForm() {
         </div>
             <h1 className="text-xl font-bold my-4">Login</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Email" />
-                <input onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="password" />
+                <input className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent" onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Email" />
+                <input className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent" onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="password" />
                 <button  className="bg-teal-600 text-white cursor-pointer py-2">Login</button>
                 {error && <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-sm mt-2">
                    {error}
                 </div>}
                 <Link  className="text-neutral-400 text-sm mt-3 text-right" href={'/register'}>
-                Don't have an account? <span className="underline ">
+                Don&apos;t have an account? <span className="underline ">
                     Register
                 </span>
                 </Link>
