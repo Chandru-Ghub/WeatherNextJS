@@ -2,7 +2,7 @@
 const nextConfig = {
     transpilePackages: ['lucide-react'],
     images:{
-        domains:['openweathermap.org','www.weatherbit.io']
+        domains:['openweathermap.org','cdn.weatherbit.io','flagsapi.com']
     }
 };
 

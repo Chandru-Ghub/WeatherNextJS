@@ -114,10 +114,12 @@ export default function WeatherDetails() {
                         {country.city_name ? country.city_name : "Location"},
                       </p>
                       <p className="text-neutral-400">{country.country_code}</p>
-                      <img
+                      <Image
                       className="w-7 h-7"
                       src={`https://flagsapi.com/${country.country_code}/flat/64.png`}
                       alt=""
+                      width={80}
+                      height={80}
                     />
                     </div>
                   </div>
@@ -135,7 +137,8 @@ export default function WeatherDetails() {
                 data.slice(1).map((list,i)=>
                   <div key={i} className="px-3 py-1 flex mt-2 justify-between">
                     <div className="flex items-center justify-center gap-2">
-                      <img className="w-12" src={`https://cdn.weatherbit.io/static/img/icons/${list.weather.icon}.png`} alt="" />
+                      <Image className="w-12" src={`https://cdn.weatherbit.io/static/img/icons/${list.weather.icon}.png`} width={80}
+                      height={80} alt="" />
                       <p className="text-white">{list.temp} °c </p>
                     </div>
                   <div className="flex gap-2 justify-center items-center mx-2">
