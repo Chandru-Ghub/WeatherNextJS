@@ -146,7 +146,7 @@ export default function Navbar() {
               onClick={() => signOut()}
               className=" w-fit mt-2 flex gap-1 text-neutral-400 justify-start items-center text-s py-2  hover:gap-4 transition-all"
             >
-              <LogOut color="#02a9a9" size={20}/> Logout
+              <LogOut color="#02a9a9" size={18}/> <span className="text-sm">Logout</span>
             </button>
           </div>
         )}
