@@ -10,7 +10,6 @@ export default function HomePage(){
     return(
         <>
         <myWeather.Provider value={[Weather,setWeather]}>
-
         <Navbar/>
         <WeatherDetails/>
         </myWeather.Provider>
