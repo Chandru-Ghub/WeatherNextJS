@@ -14,7 +14,7 @@
 }
 }
 input{
-  @apply w-[400px] border border-gray-200 py-2 px-6 bg-zinc-200/40;
+  /* @apply w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent; */
 }
 
 @keyframes spin {
@@ -23,6 +23,7 @@ input{
   }
   to {
     transform: rotate(360deg);
+    color: #02a9a9;
   }
 }
 .sun{

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { myWeather } from "./HomePage";
-import { Calendar, MapPin, Wind, Waves,  } from "lucide-react";
+import { Calendar, MapPin, Sun, Moon, Wind, Waves, Droplets, Thermometer, Eye   } from "lucide-react";
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
 
@@ -39,7 +39,6 @@ export default function WeatherDetails() {
     }
 
     if (lat && lon) {
-      console.log("lat", lat, "lon", lon);
       try {
         let res2 = await axios.get(
           `https://api.weatherbit.io/v2.0/forecast/daily?days=8&lat=${lat}&lon=${lon}&key=bfe4846bdc59485c9708673ce7c360ea`
@@ -72,7 +71,7 @@ export default function WeatherDetails() {
   return (
     <div>
       {data.length ? (
-        <div className="bg-red-400 p-5 flex gap-4 justify-center">
+        <div className="bg-black pt-5 flex flex-wrap gap-4 justify-center">
           <div className="bg-black p-5 w-fit">
             <div className=" text-white bg-stone-950 w-[330px] px-5 py-3 rounded-3xl ">
               {data.length ? (
@@ -103,7 +102,7 @@ export default function WeatherDetails() {
                       <p className="text-neutral-400">{date},</p>
                       <p className="text-neutral-400">{month}</p>
                     </div>
-                    <div className="flex gap-2 p-2">
+                    <div className="flex gap-2 p-2 flex items-center">
                       <p>
                         <MapPin className="mr-1" />
                       </p>
@@ -111,6 +110,11 @@ export default function WeatherDetails() {
                         {country.city_name ? country.city_name : "Location"},
                       </p>
                       <p className="text-neutral-400">{country.country_code}</p>
+                      <img
+                      className="w-7 h-7"
+                      src={`https://flagsapi.com/${country.country_code}/flat/64.png`}
+                      alt=""
+                    />
                     </div>
                   </div>
                 </div>
@@ -213,92 +217,83 @@ export default function WeatherDetails() {
         ))}
       </div>
       </div> */}
-            <div className="text-white bg-stone-500 rounded-3xl p-5 w-[70%]">
-              <div className="bg-green-800 p-5 rounded-3xl ">
-                  <h2 className="font-bold">Today Highlights</h2>
-                  <div className="flex gap-4 mt-5 flex-wrap bg-yellow-800">
-                    <div className=" p-2  bg-red-700">
-                      <div className="flex bg-black justify-center items-center justify-between px-3 py-2">
-                        <div>Air Quality Index</div>
+            <div className="text-white bg-black rounded-3xl p-5 w-[70%]">
+              <div className="bg-stone-950 p-5 rounded-3xl ">
+                  <h2 className="font-medium">Today Highlights</h2>
+                  <div className="flex gap-2 mt-5 flex-wrap ">
+                    <div className=" p-2   w-[45%]  min-w-[420px]">
+                      <div className="flex justify-center items-center justify-between px-3 py-2 ">
+                        <div className="text-neutral-400">Air Quality Index</div>
                         <div className="bg-green-600 rounded-2xl px-3 py-1">Good</div>
                       </div>
-                      <div className="flex gap-5 p-4 bg-yellow-600 items-center mt-3 rounded-2xl">
+                      <div className="flex gap-5 p-4 justify-between  items-center mt-3 rounded-2xl">
                         <div>
                           <Wind size={40}/>
                         </div>
                         <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
+                          <p className=" text-neutral-400">Speed</p>
+                          <p className="text-3xl">{hourly[0].wind.speed}</p>
                         </div>                     
                         <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
+                          <p className=" text-neutral-400">Min-temp</p>
+                          <p className="text-3xl">{hourly[0].main.temp_max}°</p>
                         </div>                     
                         <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
-                        </div>                     
-                        <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
-                        </div>                     
+                          <p className=" text-neutral-400">Max-temp</p>
+                          <p className="text-3xl">{hourly[0].main.temp_max}°</p>
+                        </div>                                         
                          </div>
                       <div className="flex justify-between mt-5">
-                        <div className="bg-green-500 px-4 py-2 rounded-2xl w-[200px]">
+                        <div className="bg-neutral-900 px-4 py-2 rounded-2xl w-[200px]">
                           <p className="text-neutral-400">Humidity</p>
                           <div className="flex justify-between mt-9">
-                            <div><Wind size={40}/></div>
-                            <div className="text-3xl">82%</div>
+                            <div><Droplets size={40}/></div>
+                            <div className="text-3xl">{hourly[0].main.humidity}%</div>
                           </div>
                         </div>
-                        <div className="bg-blue-500 px-4 py-2 rounded-2xl w-[200px]">
+                        <div className="bg-neutral-900 px-4 py-2 rounded-2xl w-[200px]">
                           <p className="text-neutral-400">Pressure</p>
                           <div className="flex justify-between mt-9">
-                            <div><Wind size={40}/></div>
-                            <div className="text-3xl">82%</div>
+                            <div><Waves size={40}/></div>
+                            <div className="text-3xl">{hourly[0].main.pressure}hPa</div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="p-2  bg-red-700">
-                      <div className="flex bg-black justify-center items-center justify-between px-3 py-2">
-                        <div>Air Quality Index</div>
-                        <div className="bg-green-600 rounded-2xl px-3 py-1">Good</div>
+                    <div className="p-2  w-[45%] min-w-[420px]">
+                    <div className="flex justify-center items-center justify-between px-3 py-2">
+                        <div className="text-neutral-400 py-1">Sunrise & Sunset</div>
                       </div>
-                      <div className="flex gap-5 p-4 bg-yellow-600 items-center mt-3 rounded-2xl">
+                      <div className="flex justify-around p-4 items-center mt-3 rounded-2xl">
                         <div>
-                          <Wind size={40}/>
+                          <Sun size={40}/>
                         </div>
                         <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
+                          <p className=" text-neutral-400">Sunrise</p>
+                          <p className="text-3xl">{new Date(data[0].sunrise_ts * 1000).toString().slice(16,21)}</p>
                         </div>                     
+                        <div>
+                          <Moon size={40}/>
+                        </div>               
                         <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
+                          <p className=" text-neutral-400">Sunset</p>
+                          <p className="text-3xl">{new Date(data[0].sunset_ts * 1000).toString().slice(16,21)}</p>
                         </div>                     
-                        <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
-                        </div>                     
-                        <div className=" flex flex-col items-center justify-center">
-                          <p className=" text-neutral-400">PM25</p>
-                          <p className="text-3xl">3.90</p>
-                        </div>                     
+                                           
                          </div>
                       <div className="flex justify-between mt-5">
-                        <div className="bg-green-500 px-4 py-2 rounded-2xl w-[200px]">
-                          <p className="text-neutral-400">Humidity</p>
+                        <div className="bg-neutral-900 px-4 py-2 rounded-2xl w-[200px]">
+                          <p className="text-neutral-400">Visibility</p>
                           <div className="flex justify-between mt-9">
-                            <div><Wind size={40}/></div>
-                            <div className="text-3xl">82%</div>
+                            <div><Eye size={40}/></div>
+                            <div className="text-3xl">{hourly[0].visibility/1000} Km</div>
                           </div>
                         </div>
-                        <div className="bg-blue-500 px-4 py-2 rounded-2xl w-[200px]">
-                          <p className="text-neutral-400">Pressure</p>
+                        <div className="bg-neutral-900 px-4 py-2 rounded-2xl w-[200px]">
+                          <p className="text-neutral-400">Feels Like</p>
                           <div className="flex justify-between mt-9">
-                            <div><Wind size={40}/></div>
-                            <div className="text-3xl">82%</div>
+                            <div><Thermometer size={40}/></div>
+                            <div className="text-3xl">{hourly[0].main.feels_like}°</div>
                           </div>
                         </div>
                       </div>
@@ -306,11 +301,11 @@ export default function WeatherDetails() {
                   </div>
               </div>
               <div className="w-[100%]">
-                <div>Today at</div>
-                <div className=" w-[100%] no-scrollbar flex gap-5 bg-red-700 px-4 py-1 overflow-scroll">
+                <div className="my-5">Today at</div>
+                <div className=" w-[100%] no-scrollbar flex gap-5 px-4 py-1 overflow-scroll">
                   {
-                    hourly.map((item,i)=>
-                      <div className=" bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-4">
+                    hourly.map((item)=>
+                      <div className="bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-4 cursor-pointer pointer-events-none select-none">
                         <p>{item.dt_txt.slice(11,16) > 12 ? item.dt_txt.slice(11,16)+ ' PM' :item.dt_txt.slice(11,16)+' AM'} </p>
                       <div className="flex gap-2">
                       <p className="text-neutral-400 text-xs">{new Date(
@@ -325,8 +320,9 @@ export default function WeatherDetails() {
                     }</p>
                       
                       </div>
-                        <div className=" w-[120px] flex justify-center items-center">
-                          <img className="w-15 h-20"  src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt="" />
+                        <div className=" w-[130px] flex justify-center items-center">
+                          {/* <img className="w-[80px] h-[80px]"  src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt="" /> */}
+                          <img className="w-[80px] h-[80px]"  src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="" />
                         </div>
                         <p>{item.main.temp}°</p>
                       </div>
