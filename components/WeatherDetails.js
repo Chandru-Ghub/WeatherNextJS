@@ -3,6 +3,8 @@ import { myWeather } from "./HomePage";
 import { Calendar, MapPin, Sun, Moon, Wind, Waves, Droplets, Thermometer, Eye   } from "lucide-react";
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
+import Image from "next/image";
+import bb from "../images/egg.png";
 
 export default function WeatherDetails() {
   const [Weather, setWeather] = useContext(myWeather);
@@ -41,10 +43,10 @@ export default function WeatherDetails() {
     if (lat && lon) {
       try {
         let res2 = await axios.get(
-          `https://api.weatherbit.io/v2.0/forecast/daily?days=8&lat=${lat}&lon=${lon}&key=bfe4846bdc59485c9708673ce7c360ea`
+          `https://api.weatherbit.io/v2.0/forecast/daily?days=8&lat=${lat}&lon=${lon}&key=${process.env.NEXT_PUBLIC_APIKEY}`
         );
 
-        let res1 = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=ebd3f17fb8cc2328925eeec13a25afe9&units=metric`)
+        let res1 = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_APIKEY2}&units=metric`)
         const hourlyForeCast = []
         const fiveDayForecast = res1.data.list.filter((item) => {
               const filteredData = new Date(item.dt_txt).getDate()
@@ -83,10 +85,12 @@ export default function WeatherDetails() {
                       <span className="text-3xl">°c</span>
                     </div>
                     <div className="">
-                      <img
+                      <Image
                         className="w-20"
-                        src={`https://cdn.weatherbit.io/static/img/icons/${data[0].weather.icon}.png`}
-                        alt=""
+                        src={`http://openweathermap.org/img/wn/${hourly[0].weather[0].icon}@2x.png`}
+                        alt="/"
+                        width={100}
+                        height={100}
                       />
                     </div>
                   </div>
@@ -129,7 +133,7 @@ export default function WeatherDetails() {
             <div className="bg-stone-950 px-3 py-2 mt-4 rounded-3xl w-[330px] h-[350px] overflow-scroll no-scrollbar">
               {
                 data.slice(1).map((list,i)=>
-                  <div className="px-3 py-1 flex mt-2 justify-between">
+                  <div key={i} className="px-3 py-1 flex mt-2 justify-between">
                     <div className="flex items-center justify-center gap-2">
                       <img className="w-12" src={`https://cdn.weatherbit.io/static/img/icons/${list.weather.icon}.png`} alt="" />
                       <p className="text-white">{list.temp} °c </p>
@@ -161,62 +165,10 @@ export default function WeatherDetails() {
                 )
               }
             </div>
-            <div className="country-location-time">
-              {/* <div className="geo-ctry">
-            <p>{country.country_code}</p>
-            <img
-              src={`https://flagsapi.com/${country.country_code}/flat/64.png`}
-              alt=""
-            />
-          </div> */}
-              {/* <div className="dates-now">
-            <div className="DD">
-              <p>{day}</p>
-              <div>
-                {date} {month} {year}
-              </div>
-              <span>{country.timezone}</span>
-            </div>
-            <div className="time">
-              <p>{time.split(':')[0]}:{time.split(':')[1]}</p>
-              <p>{time.split(':')[2].split(' ')[1]}</p>
-            </div>
-          </div> */}
+            <div className="country-location-time">           
             </div>
           </div>
-          {/* <div className="daily-forecast">
-      <div className="weather">
-        {data&&data.slice(1).map((a, i) => (
-          <div className="card1" key={i}>
-            <div className="dates">
-              <p>
-                {
-                  new Date(
-                    a.datetime.split("-")[0],
-                    a.datetime.split("-")[1] - 1,
-                    a.datetime.split("-")[2]
-                  )
-                    .toString()
-                    .split(" ")[0]
-                }
-              </p>
-            </div>
-
-            <div className="deg">
-              <p>{a.temp} °c temp</p>
-              <p>{a.dewpt} °c dew</p>
-            </div>
-            <div className="foreimg">
-              <img
-                src={`https://cdn.weatherbit.io/static/img/icons/${a.weather.icon}.png`}
-                alt=""
-              />
-              <p>{a.weather.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      </div> */}
+    
             <div className="text-white bg-black rounded-3xl p-5 w-[70%]">
               <div className="bg-stone-950 p-5 rounded-3xl ">
                   <h2 className="font-medium">Today Highlights</h2>
@@ -304,8 +256,8 @@ export default function WeatherDetails() {
                 <div className="my-5">Today at</div>
                 <div className=" w-[100%] no-scrollbar flex gap-5 px-4 py-1 overflow-scroll">
                   {
-                    hourly.map((item)=>
-                      <div className="bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-4 cursor-pointer pointer-events-none select-none">
+                    hourly.map((item,i)=>
+                      <div key={i} className="bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-4 cursor-pointer pointer-events-none select-none">
                         <p>{item.dt_txt.slice(11,16) > 12 ? item.dt_txt.slice(11,16)+ ' PM' :item.dt_txt.slice(11,16)+' AM'} </p>
                       <div className="flex gap-2">
                       <p className="text-neutral-400 text-xs">{new Date(
@@ -322,8 +274,7 @@ export default function WeatherDetails() {
                       </div>
                         <div className=" w-[130px] flex justify-center items-center">
                           {/* <img className="w-[80px] h-[80px]"  src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`} alt="" /> */}
-                          <img className="w-[80px] h-[80px]"  src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="" />
-                        </div>
+                          <Image src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} width='80' height='80' alt="" />                        </div>
                         <p>{item.main.temp}°</p>
                       </div>
                     )

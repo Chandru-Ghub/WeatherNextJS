@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { myWeather } from "./HomePage";
 import axios from "axios";
 import CurrentGeoLocation from "./CurrentGeoLocation";
+import { keys } from "./key";
 export default function Navbar() {
   const { data: session } = useSession();
   const { position } = CurrentGeoLocation();
@@ -20,13 +21,12 @@ export default function Navbar() {
     setShow(true);
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=10&appid=ebd3f17fb8cc2328925eeec13a25afe9`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=10&appid=${process.env.NEXT_PUBLIC_APIKEY2}`
       );
       let filteredDate = response.data.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       );
       setGetCity(filteredDate);
-      console.log(filteredDate);
     } catch (error) {
       console.error(error);
     }
@@ -42,7 +42,7 @@ export default function Navbar() {
 
     //cleanup function
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [search,searchCities]);
 
   const resetWeather = () => {
 
@@ -50,7 +50,6 @@ export default function Navbar() {
       lat: position.latitude,
       lon: position.longitude,
     };
-    console.log(geoLocation)
     setWeather(geoLocation);
   };
   // Get weather
@@ -76,8 +75,8 @@ export default function Navbar() {
     console.log('HISTORY',res.data)
   };
   return (
-    <div>
-      <div className=" sticky top-0 flex py-2 bg-black justify-between items-center">
+    <div className="sticky top-0">
+      <div className="stickey top-0 flex py-2 bg-black justify-between items-center">
       <div className="text-xl flex gap-1 items-center  px-2 py-0">
           <SunMedium className="sun max-lg:w-[40px]" size={50} color="#02a9a9" />
           <h2 className="font-sans text-white p-1 text-2xl italic uppercase font-bold max-md:text-lg max-sm:hidden">Weather<span className="uppercase font-bold text-teal-500">now</span></h2>
@@ -87,19 +86,19 @@ export default function Navbar() {
           <input 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            // onBlur={() => {
-            //   setTimeout(() => {
-            //     setShow(false);
-            //   }, 500);
-            // }}
+            onBlur={() => {
+              setTimeout(() => {
+                setShow(false);
+              }, 500);
+            }}
             placeholder="Search city..."
             className="text-neutral-200 outline-none bg-transparent w-80 h-8 w-[70%] max-lg:text-sm"
             type="text"
           />
           {show && (
             <div className=" bg-neutral-950 text-neutral-400 absolute left-0 top-4 mt-2 right-0 z-[-2] pt-6 shadow-neutral-900 shadow-lg">
-              {getCity.map((city) => (
-                <div
+              {getCity.map((city,i) => (
+                <div key={i}
                   onClick={() => handleWeather(city)}
                   className="flex px-4 py-5 text-s border-b-2 items-center gap-2 border-stone-900 hover:bg-stone-900 cursor-pointer"
                 >
