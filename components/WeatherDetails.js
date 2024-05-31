@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { myWeather } from "./HomePage";
-import { Calendar, MapPin, Sun, Moon, Wind, Waves, Droplets, Thermometer, Eye   } from "lucide-react";
+import { Calendar, MapPin, Sun, Moon, Wind, Waves, Droplets, Thermometer, Eye, SunMedium   } from "lucide-react";
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
 import Image from "next/image";
@@ -54,8 +54,6 @@ export default function WeatherDetails() {
               }
         })
         setHourly(fiveDayForecast)
-        console.log(res2.data)
-        console.log(fiveDayForecast)
         setCountry(res2.data);
         setData(res2.data.data);
       } catch (error) {
@@ -289,9 +287,10 @@ export default function WeatherDetails() {
             </div>
         </div>
       ) : (
-        <div className="progress">
-          {/* <img src={progress} alt="" /> */}
-          <div>Loading...</div>
+        <div className="fixed h-screen top-0 z-[100] bg-stone-900 right-0 left-0 bottom-0 flex flex-col justify-center items-center">
+          <div className="text-xl flex gap-1 items-center  px-2 py-0">
+          <SunMedium className="sun max-lg:w-[40px]" size={50} color="#02a9a9" />        </div>
+          <h2 className="font-sans text-white p-1 text-2xl italic uppercase font-bold max-md:text-lg max-sm:hidden">Load<span className="uppercase font-bold text-teal-500">ing...</span></h2><div className="text-white"></div>
         </div>
       )}
     </div>

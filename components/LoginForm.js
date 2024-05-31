@@ -4,8 +4,9 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter} from 'next/navigation';
-import img from '../images/egg.png'
+import img from '../images/open.png'
 import { SunMedium } from "lucide-react";
+import Image from "next/image";
 export default function LoginForm() {
 
     const [email,setEmail] = useState('')
@@ -57,6 +58,20 @@ export default function LoginForm() {
                 </Link>
             </form>
                     </div>
+                    <div className="text-stone-300 text-sm border-2 border-stone-800 p-3 rounded-md">
+                        <h3 className="text-stone-500 uppercase text-xs mb-1">Demo credentials </h3>
+                        <p className="italic"> <span className="text-teal-500">Email:</span>chandruinfo455@gmail.com</p>
+                        <p className="italic"> <span className="text-teal-500">Password:</span>12345</p>
+                    </div>
+                    <div className="flex gap-3 items-center justify-center text-sm">
+                    <p className="text-neutral-300">Powered By </p>
+                   <Image
+                    src={img}
+                    width={35}
+                    height={35}
+                    />
+                    <p className="text-neutral-300">Open Weather</p>
+                   </div>
     </div>
   )
 }

@@ -3,7 +3,9 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter} from 'next/navigation'
+import img from '../images/open.png'
 import { SunMedium } from "lucide-react";
+import Image from "next/image";
 export default function RegisterForm() {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
@@ -57,6 +59,15 @@ export default function RegisterForm() {
             </Link>
         </form>
     </div>
+    <div className="flex gap-3 items-center justify-center text-sm">
+                    <p className="text-neutral-300">Powered By </p>
+                   <Image
+                    src={img}
+                    width={35}
+                    height={35}
+                    />
+                    <p className="text-neutral-300">Open Weather</p>
+                   </div>
 </div>
   )
 }
