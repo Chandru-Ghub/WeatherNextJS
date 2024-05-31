@@ -1,4 +1,4 @@
-import{ useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const CurrentGeoLocation = () => {
   const [position, setPosition] = useState({ latitude: "", longitude: "" });
