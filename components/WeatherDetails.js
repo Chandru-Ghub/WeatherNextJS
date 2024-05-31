@@ -5,7 +5,6 @@ import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
 import Image from "next/image";
 
-
 export default function WeatherDetails() {
   const [Weather, setWeather] = useContext(myWeather);
   const { position } = CurrentGeoLocation();

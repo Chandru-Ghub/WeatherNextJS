@@ -29,3 +29,17 @@ input{
 .sun{
   animation: spin 20s linear infinite;
 }
+.show{
+  background: transparent;
+  padding: 5px;
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  transition: .5s;
+}
+.hide{
+  padding: 5px;
+  position: absolute;
+  right: 10px;
+  top: -1000px;
+}

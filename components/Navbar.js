@@ -6,6 +6,7 @@ import { myWeather } from "./HomePage";
 import axios from "axios";
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import Image from "next/image";
+import HistoryPage from "./HistoryPage";
 export default function Navbar() {
   const { data: session } = useSession();
   const { position } = CurrentGeoLocation();
@@ -52,6 +53,7 @@ export default function Navbar() {
     };
     setWeather(geoLocation);
   };
+
   // Get weather
   const handleWeather = async (city) => {
     setShow(false);
@@ -63,9 +65,9 @@ export default function Navbar() {
 
     // store searched data in mongoDB data base
     setWeather(geoLocation);
-    let res = await axios.post(
-      "https://weatherappserver-w46g.onrender.com/data",
+    let res = await axios.post("/api/history",
       {
+        email:session.user.email,
         country_code: city.country,
         lat: city.lat,
         lon: city.lon,
@@ -96,7 +98,7 @@ export default function Navbar() {
             type="text"
           />
           {show && (
-            <div className=" bg-neutral-950 text-neutral-400 absolute left-0 top-4 mt-2 right-0 z-[-2] pt-6 shadow-neutral-900 shadow-lg">
+            <div className=" bg-neutral-950  text-neutral-400 absolute left-0 top-4 mt-2 right-0 z-[-2] pt-6 shadow-neutral-900 shadow-lg">
               {getCity.map((city,i) => (
                 <div key={i}
                   onClick={() => handleWeather(city)}
@@ -124,32 +126,38 @@ export default function Navbar() {
             </div>
           )}
         </div>
-        {profile && (
-          <div className="absolute right-2 top-20 bg-neutral-900 text-white shadow-lg p-5 rounded flex flex-col gap-3">
+        {
+          <div className={profile?'show':'hide'}>
+          <div className="border-b-2 shadow-lg border-teal-600 shadow-sm bg-neutral-900 text-white shadow-lg p-5 rounded flex flex-col gap-3">
             <span
               onClick={() => setProfile(!profile)}
-              className="cursor-pointer absolute right-3 top-3 text-white"
+              className="cursor-pointer absolute right-3 top-2 text-white"
             >
-              <X size={20} className="hover:rotate-90 transition-all" />
+              <X size={18} className="hover:rotate-90 transition-all" />
             </span>
             <div className="border-b-2 border-neutral-800 text-xl flex gap-1 items-center  px-2 pb-3">
           <SunMedium className="sun" size={30} color="#02a9a9" />
           <h2 className="font-sans text-white p-1 italic uppercase font-bold">Weather<span className="uppercase font-bold text-teal-500">now</span></h2>
         </div>
             <div className="flex gap-4 items-center">
-              <User/><span className="capitalize text-neutral-400">{session?.user?.name}</span>
+              <User size={20}/><span className="capitalize text-neutral-400 text-sm">{session?.user?.name}</span>
             </div>
-            <div  className="flex gap-4 items-center">
-              <Mail/> <span className="text-neutral-400">{session?.user?.email}</span>
+            <div  className="flex gap-4 items-center text-xs">
+              <Mail size={19}/> <span className="text-neutral-400">{session?.user?.email}</span>
             </div>
             <button
               onClick={() => signOut()}
-              className=" w-fit mt-2 flex gap-1 text-neutral-400 justify-start items-center text-s py-2  hover:gap-4 transition-all"
+              className="  flex gap-1 text-neutral-400 justify-end items-center text-s hover:gap-4 transition-all"
             >
-              <LogOut color="#02a9a9" size={18}/> <span className="text-sm">Logout</span>
+              <LogOut color="#02a9a9" size={16}/> <span className="text-xs">Logout</span>
             </button>
+            <div >
+              <h3 className="text-neutral-500  text-xs flex justify-start italic border-b-2  border-neutral-800 mb-1">History</h3>
+              <HistoryPage/>
+            </div>
           </div>
-        )}
+          </div>
+        }
         <div className="flex gap-3 justify-center items-center">
           <div onClick={() => resetWeather()} className="text-[14px] px-2 py-2 rounded-full mr-4 cursor-pointer flex gap-3 text-neutral-200 justify-center items-center bg-teal-700 active:translate-y-1 max-lg:w-10 max-lg:h-10 max-lg:mr-0">
             <LocateFixed className="hover:rotate-90 transition-all max-lg:w-[20px]"  /> <span className="max-lg:hidden">Current Location</span>
