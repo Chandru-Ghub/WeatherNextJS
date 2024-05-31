@@ -38,7 +38,7 @@ export default function HistoryPage() {
     <div className="bg-neutral-900 no-scrollbar p-1 h-[45vh] overflow-scroll">
       {/* <X className="absolute rig" size={20} color="teal"/> */}
       {getCity.length ? (
-        getCity.reverse().map((city, i) => (
+        getCity.map((city, i) => (
           <div
             key={i}
             className="bg-neutral-900 flex items-center gap-3 py-3 border-b-2 border-neutral-800"
