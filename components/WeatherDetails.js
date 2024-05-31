@@ -15,6 +15,7 @@ import {
 import CurrentGeoLocation from "./CurrentGeoLocation";
 import axios from "axios";
 import Image from "next/image";
+import img from "../images/open.png";
 
 export default function WeatherDetails() {
   const [Weather, setWeather] = useContext(myWeather);
@@ -349,8 +350,12 @@ export default function WeatherDetails() {
                 ))}
               </div>
             </div>
-            <div></div>
           </div>
+          <div className="text-neutral-400 fixed bottom-1 right-10 flex gap-3 items-center justify-center text-xs">
+              <p>Powered By </p>
+              <Image src={img} width={35} height={35} />
+              <p>Open Weather</p>
+            </div>
         </div>
       ) : (
         <div className="fixed h-screen top-0 z-[100] bg-stone-900 right-0 left-0 bottom-0 flex flex-col justify-center items-center">
@@ -365,7 +370,11 @@ export default function WeatherDetails() {
             Load
             <span className="uppercase font-bold text-teal-500">ing...</span>
           </h2>
-          <div className="text-white"></div>
+          <div className="text-neutral-400 absolute bottom-1 right-10 flex gap-3 items-center justify-center text-xs">
+            <p>Powered By </p>
+            <Image src={img} width={35} height={35} />
+            <p>Open Weather</p>
+          </div>
         </div>
       )}
     </div>
