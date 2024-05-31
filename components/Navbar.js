@@ -110,12 +110,12 @@ export default function Navbar() {
             type="text"
           />
           {show && (
-            <div className=" bg-neutral-950  text-neutral-400 absolute left-0 top-4 mt-2 right-0 z-[-2] pt-6 shadow-neutral-900 shadow-lg">
+            <div className=" bg-neutral-900 text-neutral-400 absolute border-b-2 border-teal-500 rounded-sm left-0 top-10 mt-2 right-0 z-[-2] pt-1 shadow-lg shadow-lg">
               {getCity.map((city, i) => (
                 <div
                   key={i}
                   onClick={() => handleWeather(city)}
-                  className="flex px-4 py-5 text-s border-b-2 items-center gap-2 border-stone-900 hover:bg-stone-900 cursor-pointer"
+                  className="flex px-4 py-4 text-s border-b-2 items-center gap-2 border-neutral-800 hover:bg-stone-900 cursor-pointer"
                 >
                   <div>
                     <MapPin size={15} />

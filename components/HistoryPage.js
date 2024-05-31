@@ -41,7 +41,7 @@ export default function HistoryPage() {
         getCity.map((city, i) => (
           <div
             key={i}
-            className="bg-neutral-900 flex items-center gap-3 py-3 border-b-2 border-neutral-800"
+            className="bg-neutral-900 flex items-center gap-3 py-3 border-b-2 border-neutral-800 transition-all cursor-pointer hover:gap-5"
             onClick={() => handleWeather(city)}
             style={{ display: "flex" }}
           >
