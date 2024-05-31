@@ -159,10 +159,10 @@ export default function Navbar() {
           </div>
         }
         <div className="flex gap-3 justify-center items-center">
-          <div onClick={() => resetWeather()} className="text-[14px] px-2 py-2 rounded-full mr-4 cursor-pointer flex gap-3 text-neutral-200 justify-center items-center bg-teal-700 active:translate-y-1 max-lg:w-10 max-lg:h-10 max-lg:mr-0">
-            <LocateFixed className="hover:rotate-90 transition-all max-lg:w-[20px]"  /> <span className="max-lg:hidden">Current Location</span>
+          <div onClick={() => resetWeather()} className="text-[14px] px-3 py-2 rounded-full mr-3 cursor-pointer flex gap-2 text-neutral-200 justify-center items-center bg-teal-700 active:translate-y-1  max-lg:px-[5px] max-lg:py-[3px] ">
+            <LocateFixed className="w-[18px] hover:rotate-90 transition-all max-lg:w-[20px]" /> <span className="max-lg:hidden text-sm">Current Location</span>
           </div>
-          <div className="flex items-center justify-center w-10 h-10 cursor-pointer text-neutral-500 border-2 border-neutral-500 rounded-full p-1 mr-3 max-lg:w-9 max-lg:h-9">
+          <div className="flex items-center justify-center w-10 h-10 cursor-pointer text-neutral-500">
             <User className="max-lg:w-[20px]" onClick={() => setProfile(!profile)} />
           </div>
         </div>

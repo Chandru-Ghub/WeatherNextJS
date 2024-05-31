@@ -16,7 +16,7 @@ export default function HistoryPage () {
         email:session.user.email
       });
       console.log(response.data)
-      setGetCity(response.data.reverse());
+      setGetCity(response.data);
     } catch (error) {
       console.error(error);
     }
