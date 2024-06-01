@@ -95,7 +95,7 @@ export default function Navbar() {
             <span className="uppercase font-bold text-teal-500">now</span>
           </h2>
         </div>
-        <div className=" w-[35%] relative flex justify-start items-center gap-5 rounded-full bg-stone-950 px-5 py-2 max-sm:w-[60%] max-lg:py-1 max-lg">
+        <div className=" w-[35%] relative flex justify-start items-center gap-5 rounded-full bg-stone-950 px-5 py-2 max-sm:w-[60%] max-lg:py-1 max-lg max-[1110px]:w-[50%] max-[516px]:w-[65%]">
           <Search className="max-lg:w-[14px]" color="white" size={20} />
           <input
             value={search}
@@ -129,10 +129,10 @@ export default function Navbar() {
                       height={100}
                     />
                   </div>
-                  <div className="flex items-center  gap-2">
-                    <div className="">({city.country}) - </div>
-                    <div>{city.name}</div>
-                    <div className="text-xs">{city.state}</div>
+                  <div className="flex items-center gap-2 max-[516px]:gap-3">
+                    <div className="max-[516px]:text-xs">({city.country}) - </div>
+                    <div className="max-[516px]:text-xs">{city.name}</div>
+                    <div className="text-xs max-[516px]:hidden">{city.state}</div>
                   </div>
                 </div>
               ))}
@@ -181,12 +181,12 @@ export default function Navbar() {
             </div>
           </div>
         }
-        <div className="flex gap-3 justify-center items-center">
+        <div className="flex gap-3 justify-center items-center max-[516px]:gap-0">
           <div
             onClick={() => resetWeather()}
             className="text-[14px] px-3 py-2 rounded-full mr-3 cursor-pointer flex gap-2 text-neutral-200 justify-center items-center bg-teal-700 active:translate-y-1  max-lg:px-[5px] max-lg:py-[3px] "
           >
-            <LocateFixed className="w-[18px] hover:rotate-90 transition-all max-lg:w-[20px]" />{" "}
+            <LocateFixed className="w-[18px] hover:rotate-90 transition-all max-lg:w-[20px] " />
             <span className="max-lg:hidden text-sm">Current Location</span>
           </div>
           <div className="flex items-center justify-center w-10 h-10 cursor-pointer text-neutral-500">

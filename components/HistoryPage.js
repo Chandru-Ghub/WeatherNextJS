@@ -15,7 +15,6 @@ export default function HistoryPage() {
       const response = await axios.post("/api/myhistory", {
         email: session.user.email,
       });
-      console.log(response.data);
       setGetCity(response.data.reverse());
     } catch (error) {
       console.error(error);
@@ -64,7 +63,6 @@ export default function HistoryPage() {
       ) : (
         <div className="progress2">
           <div>
-            {/* <img src={progress} alt="" /> */}
             <div>Loading...</div>
           </div>
         </div>
