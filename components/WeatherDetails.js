@@ -442,7 +442,7 @@ export default function WeatherDetails() {
                     <div className=" w-[120px] h-[45px] flex justify-center items-center">
                       <Feather color="#02a9a9"/>
                     </div>
-                    <p>{Math.ceil(item.wind.speed*3.6)}Kmph</p>
+                    <p>{Math.ceil(item.wind.speed*3.6)} Kmph</p>
                   </div>
                 ))}
               </div>
