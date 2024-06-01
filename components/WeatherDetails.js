@@ -469,8 +469,8 @@ export default function WeatherDetails() {
           </div>
         </div>
       )}
-      <div className="bg-black pl-5 text-neutral-400  flex p-3 items-center justify-between text-xs">
-        <div>
+      <div className="bg-black pl-5 text-neutral-400  flex p-3 items-center justify-between text-xs max-[563px]:justify-end">
+        <div className="max-[563px]:hidden">
         &copy; Copy Right {year} Made with 💙 by Chandru 
         </div>
         <div className="flex items-center justify-center pr-12 gap-3">
