@@ -95,7 +95,7 @@ export default function WeatherDetails() {
                   </span>
                   <div className="flex items-center justify-center gap-4">
                     <div className="flex gap-3">
-                      <p className="text-5xl max-xl:text-3xl max-[640px]:text-2xl max-[505px]:text-7xl max-[405px]:text-5xl">
+                      <p className="text-5xl max-xl:text-3xl max-[640px]:text-2xl max-[505px]:text-6xl max-[405px]:text-5xl max-[350px]:text-4xl">
                         {data[0].temp}
                       </p>
                       <span className="text-3xl max-xl:text-xl max-[640px]:text-lg max-[505px]:text-2xl">
@@ -163,7 +163,7 @@ export default function WeatherDetails() {
             <div className="bg-stone-950 px-3 py-2 mt-4 rounded-3xl w-[100%]  cursor-pointer overflow-scroll no-scrollbar">
               {data.slice(1).map((list, i) => (
                 <div key={i} className="px-1 py-1 flex mt-2 justify-between">
-                  <div className="flex items-center justify-center gap-2 max-xl:gap-5 max-[640px]:gap-1 max-[505px]:gap-5">
+                  <div className="flex items-center justify-center gap-2 max-xl:gap-3 max-[640px]:gap-1 max-[505px]:gap-5">
                     <Image
                       className="w-12 max-xl:w-[35px] max-[640px]:w-[30px] max-[505px]:w-[60px]"
                       src={`https://cdn.weatherbit.io/static/img/icons/${list.weather.icon}.png`}
@@ -171,12 +171,12 @@ export default function WeatherDetails() {
                       height={80}
                       alt=""
                     />
-                    <p className="text-white max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
+                    <p className="text-white text-sm max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
                       {list.temp} °c{" "}
                     </p>
                   </div>
                   <div className="flex gap-2 justify-center items-center mx-2 max-xl:text-xs">
-                    <p className="text-neutral-400 max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
+                    <p className="text-neutral-400 text-sm max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
                       {
                         new Date(
                           list.datetime.split("-")[0],
@@ -187,7 +187,7 @@ export default function WeatherDetails() {
                           .split(" ")[2]
                       }
                     </p>
-                    <p className="text-neutral-400 max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
+                    <p className="text-neutral-400 text-sm max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-lg">
                       {
                         new Date(
                           list.datetime.split("-")[0],
@@ -199,7 +199,7 @@ export default function WeatherDetails() {
                       }
                     </p>
                   </div>
-                  <p className=" text-neutral-400 flex items-center justify-center max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-xs">
+                  <p className=" text-neutral-400 text-sm flex items-center justify-center max-xl:text-xs max-[640px]:text-[10px] max-[505px]:text-xs">
                     {
                       new Date(
                         list.datetime.split("-")[0],
@@ -233,7 +233,7 @@ export default function WeatherDetails() {
                     <div>
                       <Wind
                         className="max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                        size={40}
+                        size={38}
                       />
                     </div>
                     <div className=" flex flex-col items-center justify-center ">
@@ -270,7 +270,7 @@ export default function WeatherDetails() {
                         <div>
                           <Droplets
                             className="max-xl:w-[40px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[30px]"
-                            size={40}
+                            size={38}
                           />
                         </div>
                         <div className="text-3xl max-xl:text-xl max-lg:text-sm max-[815px]:text-xl">
@@ -286,7 +286,7 @@ export default function WeatherDetails() {
                         <div>
                           <Waves
                             className="max-xl:w-[35px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                            size={40}
+                            size={38}
                           />
                         </div>
                         <div className="text-3xl max-xl:text-xl max-[1080px]:text-sm max-lg:text-xs max-[815px]:text-xl">
@@ -306,7 +306,7 @@ export default function WeatherDetails() {
                     <div>
                       <Sun
                         className="max-xl:w-[40px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                        size={40}
+                        size={38}
                       />
                     </div>
                     <div className=" flex flex-col items-center justify-center">
@@ -322,7 +322,7 @@ export default function WeatherDetails() {
                     <div>
                       <Moon
                         className="max-xl:w-[40px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                        size={40}
+                        size={38}
                       />
                     </div>
                     <div className=" flex flex-col items-center justify-center">
@@ -345,11 +345,11 @@ export default function WeatherDetails() {
                         <div>
                           <Eye
                             className="max-xl:w-[40px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                            size={40}
+                            size={38}
                           />
                         </div>
                         <div className="text-3xl max-xl:text-xl max-lg:text-sm max-[815px]:text-xl">
-                          {(hourly[0].visibility / 1000).toFixed(2)} Km
+                          {(hourly[0].visibility / 1000).toFixed(0)} Km
                         </div>
                       </div>
                     </div>
@@ -361,7 +361,7 @@ export default function WeatherDetails() {
                         <div>
                           <Thermometer
                             className="max-xl:w-[38px] max-[1080px]:w-[30px] max-lg:w-[20px] max-[815px]:w-[35px]"
-                            size={40}
+                            size={38}
                           />
                         </div>
                         <div className="text-3xl max-xl:text-xl max-lg:text-sm max-[815px]:text-xl">
@@ -374,14 +374,15 @@ export default function WeatherDetails() {
               </div>
             </div>
             <div className="w-[100%] ">
-              <div className="my-4 ml-5">Today at</div>
-              <div className=" w-[100%] mb-4 no-scrollbar flex gap-5 py-1 overflow-scroll">
+              <div className="my-3 ml-5">Today at</div>
+              <div className="flex flex-col">
+              <div className=" w-[100%] mb-4 no-scrollbar flex gap-5 py-1 overflow-scroll max-xl:mb-1">
                 {hourly.map((item, i) => (
                   <div
                     key={i}
-                    className="text-sm bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-2 cursor-pointer pointer-events-none select-none"
+                    className="text-sm bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-2 cursor-pointer pointer-events-none select-none max-xl:gap-1"
                   >
-                    <p>
+                    <p className="max-xl:text-xs">
                       {item.dt_txt.slice(11, 16) > 12
                         ? item.dt_txt.slice(11, 16) + " PM"
                         : item.dt_txt.slice(11, 16) + " AM"}{" "}
@@ -401,13 +402,14 @@ export default function WeatherDetails() {
                           .join(" ")}
                       </p>
                     </div>
-                    <div className=" w-[120px] h-[45px] flex justify-center items-center">
+                    <div className=" w-[120px] h-[45px] flex justify-center items-center max-xl:w-[100px] max-xl:h-[40px]">
                       <Image
+                      className="max-xl:w-[50px]"
                         src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                         width="70"
                         height="70"
                         alt=""
-                      />{" "}
+                      />
                     </div>
                     <p>{item.main.temp}°</p>
                   </div>
@@ -419,7 +421,7 @@ export default function WeatherDetails() {
                     key={i}
                     className="text-sm bg-stone-950 rounded-2xl flex gap-2 flex-col items-center justify-center py-2 cursor-pointer pointer-events-none select-none"
                   >
-                    <p>
+                    <p className="max-xl:text-xs">
                       {item.dt_txt.slice(11, 16) > 12
                         ? item.dt_txt.slice(11, 16) + " PM"
                         : item.dt_txt.slice(11, 16) + " AM"}{" "}
@@ -439,12 +441,13 @@ export default function WeatherDetails() {
                           .join(" ")}
                       </p>
                     </div>
-                    <div className=" w-[120px] h-[45px] flex justify-center items-center">
-                      <Feather color="#02a9a9"/>
+                    <div className=" w-[120px] h-[45px] flex justify-center items-center max-xl:w-[100px] max-xl:h-[25px]">
+                      <Feather className="" color="#02a9a9"/>
                     </div>
                     <p>{Math.ceil(item.wind.speed*3.6)} Kmph</p>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
           </div>

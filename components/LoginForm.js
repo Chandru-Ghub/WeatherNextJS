@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import img from "../images/open.png";
-import { SunMedium } from "lucide-react";
+import { SunMedium, ShieldX } from "lucide-react";
 import Image from "next/image";
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ export default function LoginForm() {
     }
   };
   return (
-    <div class="grid place-items-center h-screen bg-stone-900">
+    <div class="grid place-items-center h-screen bg-black">
       <div className="p-5 border-t-4 bg-stone-950 text-white border-teal-600 shadow-lg rounded-lg">
         <div className="text-xl flex gap-1 items-center  px-2 py-0">
           <SunMedium className="sun" size={50} color="#02a9a9" />
@@ -50,23 +50,23 @@ export default function LoginForm() {
         <h1 className="text-xl font-bold my-4">Login</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input
-            className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent"
+            className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent max-sm:w-[300px] max-[450px]:w-[250px]"
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
           />
           <input
-            className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent"
+            className="w-[400px] border border-neutral-600 py-2 outline-none px-6 bg-transparent max-sm:w-[300px] max-[450px]:w-[250px]"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="password"
           />
-          <button className="bg-teal-600 text-white cursor-pointer py-2">
+          <button className="bg-teal-600 text-white cursor-pointer py-2 active:translate-y-1 hover:opacity-90">
             Login
           </button>
           {error && (
-            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-sm mt-2">
-              {error}
+            <div className="text-red-500 text-white w-fit text-sm py-1 px-3 rounded-sm mt-2 flex items-center gap-2 text-xs">
+              <ShieldX size={18}/>{error}
             </div>
           )}
           <Link
